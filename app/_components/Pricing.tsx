@@ -4,11 +4,26 @@
 import React, { useState } from 'react';
 import { Check, X, Zap, Crown, Sparkles, Shield, Calendar, Users, TrendingUp, Star, ArrowRight, Calculator } from 'lucide-react';
 
+type Plan = {
+  id: string;
+  name: string;
+  icon: React.ComponentType<{ className?: string }>;
+  iconColor: string;
+  gradient: string;
+  price: number;
+  originalPrice: number | null;
+  features: { name: string; included: boolean; comingSoon?: boolean }[];
+  buttonText: string;
+  buttonStyle: string;
+  popular: boolean;
+  savings: string | null;
+};
+
 const PricingAccess= () => {
   const [billingPeriod, setBillingPeriod] = useState('monthly');
-  const [hoveredPlan, setHoveredPlan] = useState(null);
+  const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
 
-  const plans = [
+  const plans: Plan[] = [
     {
       id: 'creator',
       name: 'Creator',
@@ -200,7 +215,7 @@ const PricingAccess= () => {
                     </div>
                   </div>
 
-                  {billingPeriod === 'annual' && (
+                  {billingPeriod === 'annual' && plan.originalPrice && (
                     <div className="inline-flex items-center gap-1 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
                       <Calculator className="w-3 h-3" />
                       Save ${((plan.originalPrice - plan.price) * 12).toFixed(0)}/year

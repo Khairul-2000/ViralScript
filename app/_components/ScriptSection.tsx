@@ -1,8 +1,7 @@
 "use client";
 
-
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Play, Star, Bookmark } from 'lucide-react';
 
 const ScriptSection = () => {
   const [selectedNiche, setSelectedNiche] = useState('All Niches');
@@ -11,17 +10,17 @@ const ScriptSection = () => {
     {
       id: 1,
       category: 'Beauty & Skincare',
-      categoryColor: 'bg-gradient-to-r from-pink-400 to-purple-500',
+      categoryColor: 'bg-gradient-to-r from-pink-400 to-rose-500',
       title: 'The 10-Second Skincare Hack',
-      description: '"I never thought THIS would fix my acne overnight... until I discovered this dermatologist\'s secret technique..."',
+      description: '"I used to have terrible acne until I discovered this one weird trick that cleared my skin in just 48 hours..."',
       buttonColor: 'bg-gradient-to-r from-pink-500 to-pink-600'
     },
     {
       id: 2,
       category: 'Home & Cleaning',
-      categoryColor: 'bg-gradient-to-r from-blue-400 to-teal-500',
-      title: 'The Shower Cleaning Miracle',
-      description: '"Stop scrubbing your shower for hours! This $5 tool changed everything about how I clean my bathroom..."',
+      categoryColor: 'bg-gradient-to-r from-emerald-400 to-green-500',
+      title: 'The Kitchen Cleaning Revolution',
+      description: '"This $3 household item made my kitchen spotless in 5 minutes. Professional cleaners hate this secret..."',
       buttonColor: 'bg-gradient-to-r from-pink-500 to-pink-600'
     },
     {
@@ -65,25 +64,32 @@ const ScriptSection = () => {
     : scripts.filter(script => script.category === selectedNiche);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
+    <section id="scripts" className="min-h-screen section-alt py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-block  text-black px-8 py-3 rounded-lg text-2xl font-bold mb-4">
-            Script Library
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 card backdrop-blur-sm rounded-full px-4 py-2 mb-6 shadow-sm">
+            <Star className="w-4 h-4 text-yellow-500 fill-current" />
+            <span className="text-sm font-medium text-secondary">Proven Script Library</span>
           </div>
-          <div className=" text-black opacity-65 px-6 py-2 rounded-lg text-sm max-w-2xl mx-auto">
-            Browse our collection of proven UGC scripts organized by niche. Each script follows our viral 7-step framework.
-          </div>
+          
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-[var(--text-primary)] via-[var(--firstColor)] to-purple-600 bg-clip-text text-transparent mb-6">
+            Viral UGC Scripts
+          </h1>
+          
+          <p className="text-xl text-secondary max-w-2xl mx-auto leading-relaxed">
+            Ready-to-use scripts that have generated millions of views. 
+            Simply copy, personalize, and watch your content go viral.
+          </p>
         </div>
 
-        {/* Filter Dropdown */}
+        {/* Filter Section */}
         <div className="flex justify-center mb-12">
           <div className="relative">
             <select 
               value={selectedNiche}
               onChange={(e) => setSelectedNiche(e.target.value)}
-              className="appearance-none bg-white border border-gray-300 rounded-lg px-6 py-3 pr-12 text-gray-700 font-medium min-w-48 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field appearance-none rounded-lg px-6 py-3 pr-12 font-medium min-w-48 focus:outline-none focus:ring-2 focus:ring-[var(--firstColor)]"
             >
               {categories.map(category => (
                 <option key={category} value={category}>
@@ -91,44 +97,73 @@ const ScriptSection = () => {
                 </option>
               ))}
             </select>
-            <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 pointer-events-none" />
+            <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-secondary w-5 h-5 pointer-events-none" />
           </div>
         </div>
 
         {/* Script Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredScripts.map((script) => (
-            <div key={script.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div key={script.id} className="card rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group">
               {/* Category Header */}
               <div className={`${script.categoryColor} h-2`}></div>
               
               {/* Card Content */}
               <div className="p-6">
                 {/* Category Badge */}
-                <div className="inline-block bg-gray-100 text-gray-600 text-xs font-medium px-3 py-1 rounded-full mb-4">
-                  {script.category}
+                <div className="flex items-center justify-between mb-4">
+                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium text-white ${script.categoryColor}`}>
+                    {script.category}
+                  </span>
+                  <button className="p-2 rounded-lg hover:bg-[var(--card-hover)] transition-colors">
+                    <Bookmark className="w-4 h-4 text-[var(--text-muted)] hover:text-[var(--firstColor)]" />
+                  </button>
                 </div>
-                
-                {/* Title */}
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+
+                {/* Script Title */}
+                <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-[var(--firstColor)] transition-colors duration-300">
                   {script.title}
                 </h3>
-                
-                {/* Description */}
-                <p className="text-gray-600 text-sm leading-relaxed mb-6">
+
+                {/* Script Preview */}
+                <p className="text-secondary leading-relaxed mb-6 text-sm italic">
                   {script.description}
                 </p>
-                
-                {/* Button */}
-                <button className={`w-full ${script.buttonColor} hover:opacity-90 text-white font-semibold py-3 px-6 rounded-lg transition-opacity duration-200`}>
-                  View Script
-                </button>
+
+                {/* Action Buttons */}
+                <div className="flex gap-3">
+                  <button className={`flex-1 text-white py-3 px-4 rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg ${script.buttonColor}`}>
+                    <div className="flex items-center justify-center gap-2">
+                      <Play className="w-4 h-4" />
+                      View Script
+                    </div>
+                  </button>
+                  
+                  <button className="btn-secondary px-4 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105">
+                    Preview
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <div className="card backdrop-blur-sm rounded-3xl p-8 shadow-lg max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-primary mb-4">
+              Ready to Create Viral Content?
+            </h3>
+            <p className="text-secondary mb-6">
+              Get instant access to our complete library of viral UGC scripts and start creating content that converts.
+            </p>
+            <button className="btn-primary px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
+              Get Full Access Now
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

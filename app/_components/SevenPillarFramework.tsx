@@ -68,14 +68,14 @@ const SevenPillarFramework = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-16 px-4">
+    <section id="how-it-works" className="min-h-screen section-container py-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-primary mb-4">
             The 7-Pillar Framework
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-secondary max-w-2xl mx-auto">
             Our proven structure for creating viral UGC videos that convert viewers into customers in just 30 seconds.
           </p>
         </div>
@@ -83,7 +83,7 @@ const SevenPillarFramework = () => {
         {/* Timeline Container */}
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-300 h-full hidden lg:block"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-[var(--border-color)] h-full hidden lg:block"></div>
           
           {/* Timeline Dots */}
           <div className="absolute left-1/2 transform -translate-x-1/2 hidden lg:flex flex-col justify-between h-full">
@@ -108,22 +108,22 @@ const SevenPillarFramework = () => {
                     ? 'lg:ml-12' 
                     : 'lg:mr-12'
                 }`}>
-                  <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-l-4 border-solid">
+                  <div className="card rounded-xl shadow-lg p-6 border-t-4 border-l-4 border-solid hover:shadow-xl transition-all duration-300 group">
                     {/* Colored top border */}
                     <div className={`${pillar.color} h-1 w-full -mt-6 -mx-6 mb-4 rounded-t-xl`}></div>
                     
                     {/* Number and Title */}
                     <div className="flex items-center gap-3 mb-4">
-                      <div className={`w-8 h-8 ${pillar.color} text-white rounded-full flex items-center justify-center font-bold text-sm`}>
+                      <div className={`w-8 h-8 ${pillar.color} text-white rounded-full flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-transform duration-300`}>
                         {pillar.number}
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900">
+                      <h3 className="text-xl font-bold text-primary group-hover:text-[var(--firstColor)] transition-colors duration-300">
                         {pillar.title}
                       </h3>
                     </div>
                     
                     {/* Description */}
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-secondary leading-relaxed">
                       {pillar.description}
                     </p>
                   </div>
@@ -131,7 +131,7 @@ const SevenPillarFramework = () => {
 
                 {/* Spacer for mobile */}
                 <div className="w-full lg:w-2/12 flex justify-center py-4 lg:py-0">
-                  <div className="w-4 h-4 bg-gray-400 rounded-full lg:hidden"></div>
+                  <div className="w-4 h-4 bg-[var(--text-muted)] rounded-full lg:hidden"></div>
                 </div>
               </div>
             ))}
@@ -141,18 +141,18 @@ const SevenPillarFramework = () => {
           <div className="flex justify-between items-center mt-16 px-4">
             <div className="flex flex-col items-center">
               <div className="w-3 h-3 bg-orange-400 rounded-full mb-2"></div>
-              <span className="text-sm text-gray-600 font-medium">0s</span>
-              <span className="text-xs text-gray-500">Opportunity</span>
+              <span className="text-sm text-secondary font-medium">0s</span>
+              <span className="text-xs text-muted">Opportunity</span>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-3 h-3 bg-red-500 rounded-full mb-2"></div>
-              <span className="text-sm text-gray-600 font-medium">30s</span>
-              <span className="text-xs text-gray-500">CTA</span>
+              <span className="text-sm text-secondary font-medium">30s</span>
+              <span className="text-xs text-muted">CTA</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -39,7 +39,7 @@ const PricingAccess= () => {
         { name: 'AI Script Generator', included: false }
       ],
       buttonText: 'Choose Creator Plan',
-      buttonStyle: 'bg-blue-500 hover:bg-blue-600 text-white',
+      buttonStyle: 'btn-secondary',
       popular: false,
       savings: null
     },
@@ -88,7 +88,7 @@ const PricingAccess= () => {
       icon: Calendar,
       title: 'Cancel anytime',
       subtitle: 'No long-term contracts',
-      color: 'text-gray-600'
+      color: 'text-[var(--text-secondary)]'
     },
     {
       icon: Zap,
@@ -111,20 +111,20 @@ const PricingAccess= () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-16 px-4">
+    <div className="min-h-screen section-container py-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 mb-6 shadow-sm border border-white/20">
+          <div className="inline-flex items-center gap-2 card backdrop-blur-sm rounded-full px-4 py-2 mb-6 shadow-sm">
             <TrendingUp className="w-4 h-4 text-green-500" />
-            <span className="text-sm font-medium text-gray-700">Unlock Your Creative Potential</span>
+            <span className="text-sm font-medium text-[var(--text-secondary)]">Unlock Your Creative Potential</span>
           </div>
           
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-6">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-[var(--text-primary)] via-[var(--firstColor)] to-purple-900 bg-clip-text text-transparent mb-6">
             Pricing & Access
           </h1>
           
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed mb-8">
             Choose the perfect plan for your content creation needs. Unlock viral scripts that convert viewers into customers.
           </p>
 
@@ -132,31 +132,31 @@ const PricingAccess= () => {
           <div className="flex justify-center gap-8 mb-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-                <div className="text-sm text-gray-500">{stat.label}</div>
+                <div className="text-2xl font-bold text-[var(--text-primary)]">{stat.value}</div>
+                <div className="text-sm text-[var(--text-secondary)]">{stat.label}</div>
               </div>
             ))}
           </div>
 
           {/* Billing Toggle */}
           <div className="flex items-center justify-center gap-4 mb-12">
-            <span className={`font-medium ${billingPeriod === 'monthly' ? 'text-gray-900' : 'text-gray-500'}`}>
+            <span className={`font-medium ${billingPeriod === 'monthly' ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}>
               Monthly
             </span>
             <button
               onClick={() => setBillingPeriod(billingPeriod === 'monthly' ? 'annual' : 'monthly')}
-              className="relative w-16 h-8 bg-gray-200 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="relative w-16 h-8 bg-[var(--border-color)] rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
-              <div className={`absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
+              <div className={`absolute top-1 left-1 w-6 h-6 bg-[var(--card-bg)] rounded-full shadow-md transform transition-transform duration-300 ${
                 billingPeriod === 'annual' ? 'translate-x-8 bg-gradient-to-r from-blue-500 to-purple-500' : ''
               }`} />
             </button>
             <div className="flex items-center gap-2">
-              <span className={`font-medium ${billingPeriod === 'annual' ? 'text-gray-900' : 'text-gray-500'}`}>
+              <span className={`font-medium ${billingPeriod === 'annual' ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}>
                 Annual
               </span>
               {billingPeriod === 'annual' && (
-                <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium">
+                <span className="success text-xs px-2 py-1 rounded-full font-medium">
                   Save 20%
                 </span>
               )}
@@ -173,10 +173,10 @@ const PricingAccess= () => {
             return (
               <div
                 key={plan.id}
-                className={`relative bg-white/70 backdrop-blur-sm rounded-3xl p-8 border transition-all duration-500 ${
+                className={`relative card backdrop-blur-sm rounded-3xl p-8 transition-all duration-500 ${
                   plan.popular 
-                    ? 'border-pink-200 shadow-2xl scale-105 ring-2 ring-pink-200' 
-                    : 'border-white/20 shadow-lg hover:shadow-2xl hover:scale-105'
+                    ? 'ring-2 ring-pink-200 shadow-2xl scale-105' 
+                    : 'hover:shadow-2xl hover:scale-105'
                 }`}
                 onMouseEnter={() => setHoveredPlan(plan.id)}
                 onMouseLeave={() => setHoveredPlan(null)}
@@ -203,22 +203,21 @@ const PricingAccess= () => {
                     <IconComponent className="w-8 h-8 text-white" />
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                  <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-2">{plan.name}</h3>
                   
                   <div className="flex items-center justify-center gap-2 mb-4">
-                    <span className="text-4xl font-bold text-gray-900">${plan.price}</span>
+                    <span className="text-4xl font-bold text-[var(--text-primary)]">${plan.price}</span>
                     <div className="text-left">
+                      <div className="text-sm text-[var(--text-secondary)]">per month</div>
                       {plan.originalPrice && (
-                        <div className="text-sm text-gray-400 line-through">${plan.originalPrice}</div>
+                        <div className="text-xs text-[var(--text-muted)] line-through">${plan.originalPrice}</div>
                       )}
-                      <div className="text-sm text-gray-500">/month</div>
                     </div>
                   </div>
-
-                  {billingPeriod === 'annual' && plan.originalPrice && (
-                    <div className="inline-flex items-center gap-1 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                      <Calculator className="w-3 h-3" />
-                      Save ${((plan.originalPrice - plan.price) * 12).toFixed(0)}/year
+                  
+                  {plan.savings && (
+                    <div className="success text-xs px-3 py-1 rounded-full font-medium inline-block">
+                      {plan.savings}
                     </div>
                   )}
                 </div>
@@ -229,8 +228,8 @@ const PricingAccess= () => {
                     <div key={featureIndex} className="flex items-start gap-3">
                       <div className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${
                         feature.included 
-                          ? 'bg-green-100 text-green-600' 
-                          : 'bg-gray-100 text-gray-400'
+                          ? 'success' 
+                          : 'bg-[var(--section-bg)] text-[var(--text-muted)]'
                       }`}>
                         {feature.included ? (
                           <Check className="w-3 h-3" />
@@ -240,12 +239,12 @@ const PricingAccess= () => {
                       </div>
                       <div className="flex-1">
                         <span className={`text-sm ${
-                          feature.included ? 'text-gray-700' : 'text-gray-400'
+                          feature.included ? 'text-[var(--text-primary)]' : 'text-[var(--text-muted)]'
                         }`}>
                           {feature.name}
                         </span>
                         {feature.comingSoon && (
-                          <span className="ml-2 bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">
+                          <span className="ml-2 warning text-xs px-2 py-1 rounded-full">
                             Coming Soon
                           </span>
                         )}
@@ -273,15 +272,15 @@ const PricingAccess= () => {
           {guarantees.map((guarantee, index) => {
             const IconComponent = guarantee.icon;
             return (
-              <div key={index} className="flex items-center gap-4 bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-white/20 hover:shadow-md transition-shadow duration-300">
+              <div key={index} className="flex items-center gap-4 card backdrop-blur-sm rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--section-bg)] flex items-center justify-center">
                     <IconComponent className={`w-6 h-6 ${guarantee.color}`} />
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">{guarantee.title}</h4>
-                  <p className="text-sm text-gray-600">{guarantee.subtitle}</p>
+                  <h4 className="font-semibold text-[var(--text-primary)] mb-1">{guarantee.title}</h4>
+                  <p className="text-sm text-[var(--text-secondary)]">{guarantee.subtitle}</p>
                 </div>
               </div>
             );
@@ -290,15 +289,15 @@ const PricingAccess= () => {
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/20 max-w-2xl mx-auto">
+          <div className="card backdrop-blur-sm rounded-3xl p-8 shadow-lg max-w-2xl mx-auto">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Star className="w-5 h-5 text-yellow-500 fill-current" />
-              <span className="font-semibold text-gray-900">Still have questions?</span>
+              <span className="font-semibold text-[var(--text-primary)]">Still have questions?</span>
             </div>
-            <p className="text-gray-600 mb-6">
-              Join thousands of creators who've already transformed their content strategy with our proven scripts.
+            <p className="text-[var(--text-secondary)] mb-6">
+              Join thousands of creators who are already creating viral content with our proven scripts.
             </p>
-            <button className="bg-gradient-to-r from-gray-900 to-blue-900 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
+            <button className="btn-primary px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
               Start Your Free Trial
             </button>
           </div>
